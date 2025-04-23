@@ -1,4 +1,4 @@
-# PNU Into to IW (059) - Team 18
+# PNU Intro to IW (059) - Team 18
 
 ## Team Members
 - 김주연 ()
