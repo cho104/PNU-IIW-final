@@ -1,34 +1,28 @@
-# 🌐 Introduction to Internet and Web (059) - Team 18
+# Introduction to Internet and Web (059) - Team 18
 
-## 📌 Important Links
+## Important Links
 - 🔗 [Project Repository](https://github.com/cho104/iiw-project-18)
 
-## 👥 Team Members
+## Team Members
 - 김주연 ()
 - 변예준 ()
 - 이치오 (202555439)
 
-## 🎯 Project Goal
-Develop an interesting and interactive website using **HTML**, **CSS**, **JavaScript**, and **OpenAPI**.
-
-## 📚 Guideline
-
-### Topic
-- Choose any topic of your interest.
-- Hosting on a web server is **optional** (you may use a local server).
-
-### Report & Video
-- Reports and videos **do not need to be in English**.
-
-## 🗓️ Tasks & Deadlines
-
+## Tasks & Deadlines
 | Task | Deadline | Notes |
 |------|----------|-------|
 | Progress Report | **May 18th** | One report per team |
 | Final Submission | **June 8th** | Submit final report using the template, all project files, and a presentation/demo video (under 5 mins per team) |
 
-## ✅ Minimum Requirements
+## Project Goal
+Develop an interesting and interactive website using **HTML**, **CSS**, **JavaScript**, and **OpenAPI**.
 
+## Guideline
+- Choose any topic of your interest.
+- Hosting on a web server is **optional** (you may use a local server).
+- Reports and videos **do not need to be in English**.
+
+## Minimum Requirements
 - [ ] At least **three different use cases**  
   _Example: A website displaying the most popular movie list, allowing users to search and view details on click._
 
