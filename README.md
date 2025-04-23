@@ -15,11 +15,11 @@ Develop an interesting and interactive website using **HTML**, **CSS**, **JavaSc
 
 ## 📚 Guideline
 
-### 🔎 Topic
+### Topic
 - Choose any topic of your interest.
 - Hosting on a web server is **optional** (you may use a local server).
 
-### 📄 Report & 🎥 Video
+### Report & Video
 - Reports and videos **do not need to be in English**.
 
 ---
@@ -28,21 +28,21 @@ Develop an interesting and interactive website using **HTML**, **CSS**, **JavaSc
 
 | Task | Deadline | Notes |
 |------|----------|-------|
-| 📈 Progress Report | **May 18th** | One report per team |
-| ✅ Final Submission | **June 8th** | Submit final report using the template, all project files, and a presentation/demo video (under 5 mins per team) |
+| Progress Report | **May 18th** | One report per team |
+| Final Submission | **June 8th** | Submit final report using the template, all project files, and a presentation/demo video (under 5 mins per team) |
 
 ---
 
 ## ✅ Minimum Requirements
 
-- [] 📌 At least **three different use cases**  
+- [ ] At least **three different use cases**  
   _Example: A website displaying the most popular movie list, allowing users to search and view details on click._
 
-- [] ⚙️ Use frameworks/libraries covered in class:  
+- [ ] Use frameworks/libraries covered in class:  
   - `HTML`, `CSS`, `JavaScript`, `Node.js`, `Express`, `jQuery`, `AJAX`, or similar
   - Use **external files** for JavaScript and CSS
 
-- [] 🔗 Integrate **OpenAPI**
+- [ ] Integrate **OpenAPI**
   - Preferably handle **XML/JSON**
   - Implement proper **error handling**
 
