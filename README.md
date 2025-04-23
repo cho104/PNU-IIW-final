@@ -11,8 +11,6 @@
 ## 🎯 Project Goal
 Develop an interesting and interactive website using **HTML**, **CSS**, **JavaScript**, and **OpenAPI**.
 
----
-
 ## 📚 Guideline
 
 ### Topic
@@ -22,16 +20,12 @@ Develop an interesting and interactive website using **HTML**, **CSS**, **JavaSc
 ### Report & Video
 - Reports and videos **do not need to be in English**.
 
----
-
 ## 🗓️ Tasks & Deadlines
 
 | Task | Deadline | Notes |
 |------|----------|-------|
 | Progress Report | **May 18th** | One report per team |
 | Final Submission | **June 8th** | Submit final report using the template, all project files, and a presentation/demo video (under 5 mins per team) |
-
----
 
 ## ✅ Minimum Requirements
 
@@ -46,9 +40,9 @@ Develop an interesting and interactive website using **HTML**, **CSS**, **JavaSc
   - Preferably handle **XML/JSON**
   - Implement proper **error handling**
 
-- [] 🧑‍💻 Accept **user input** with:
+- [ ] Accept **user input** with:
   - Placeholder text
   - Robust error handling
   - etc.
 
-- [] 📱 Ensure **responsive design** based on screen width and etc.
+- [ ] Ensure **responsive design** based on screen width and etc.
