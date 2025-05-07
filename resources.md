@@ -1,10 +1,19 @@
+### Meeting: Apr 30
+---
+#### 1. Topic
+~~Travel~~, Pet, ~~Diary~~, ~~Music~~, ~~Pollen~~, ~~Bird~~, ~~Disaster~~
+#### 2. Summary
+* Location of Animal Shelter
+* Info about the Animals
+* Search
+
+### Ideas?
+---
 Design:
 
 Map & Place Card
 
 (https://dribbble.com/shots/6661973-Studio-Park-Map)
-
-(https://dribbble.com/shots/25108863-OutletBuddy-Interactive-Map-for-Nearby-Store-Searches)
 
 (https://dribbble.com/shots/4075446-ThoughtCenter-Map-Visualization)
 
