@@ -7,8 +7,16 @@
 * Info about the Animals
 * Search
 
-### Ideas?
+### Ideas
 ---
+Available Informations:
+
+Rescued time, location, species, picture, shelter, sex, breed, color, weight, state, specifics, health
+
+Selter address, lat, long, number, close day, time
+
+Statistics
+
 Design:
 
 Map & Place Card
@@ -45,4 +53,6 @@ Etc.
 
 Idea:
 
-CLIP Vectorized DB?
+CLIP Vectorized DB
+Polygon Search
+Radius Search
