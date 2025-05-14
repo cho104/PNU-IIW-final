@@ -2,7 +2,7 @@
 
 ## Team Members
 - 김주연 ()
-- 변예준 ()
+- 변예준 (202555415, Dept. of AI)
 - 이치오 (202555439, Dept. of AI)
 
 ## Tasks & Deadlines
