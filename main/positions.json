@@ -4,7 +4,7 @@
         "height": "500px",
         "frameborder": "0"
     },
-    "position": [
+    "positions": [
         {
             "content": "<div>카카오</div>",
             "latlng": [33.450705, 126.570677],
