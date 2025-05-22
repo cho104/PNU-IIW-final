@@ -1,7 +1,7 @@
 var container = document.getElementById("map");
 var options = {
     center: new kakao.maps.LatLng(33.450701, 126.570667),
-    level: 3
+    level: 2
 };
 
 var map = new kakao.maps.Map(container, options);
@@ -39,6 +39,13 @@ function displayMarker(locPosition, message) {
     map.setCenter(locPosition);
 }
 
+function adjustIframeScale(iframe) {
+    const container = iframe.parentElement;
+    const scale = container.clientWidth / iframe.clientWidth; // 비율 계산
+    iframe.style.transform = `scale(${scale})`;
+    iframe.style.transformOrigin = "0 0";
+}
+
 // JSON 파일에서 데이터를 가져와 마커 생성
 fetch("positions.json")
     .then(response => response.json())
@@ -57,7 +64,7 @@ fetch("positions.json")
                 content: position.content
             });
 
-            var iframeHTML = `<iframe width='${commonSettings.width}' height='${commonSettings.height}' src='${position.src}' frameborder='${commonSettings.frameborder}'></iframe>`;
+            var iframeHTML = `<div class="iframe-container"><iframe width='${commonSettings.width}' height='${commonSettings.height}' transform='${commonSettings.transform}' transformOrigin='${commonSettings.transformOrigin}' src='${position.src}' frameborder='${commonSettings.frameborder}'></iframe></div>`;
             var clickinfo = new kakao.maps.InfoWindow({
                 content: iframeHTML // 공유 설정 적용
             });
@@ -69,6 +76,14 @@ fetch("positions.json")
         });
     })
     .catch(error => console.error("JSON 데이터를 불러오는 중 오류 발생:", error));
+
+// 창 크기 변경 시 `iframe` 크기 재조정
+window.addEventListener("resize", function() {
+    const iframe = document.querySelector(".responsive-iframe");
+    if (iframe) {
+        adjustIframeScale(iframe);
+    }
+});
 
 function makeOutListener(infowindow) {
     return function() {
