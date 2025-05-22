@@ -1,0 +1,19 @@
+{
+    "commonSettings": {
+        "width": "100%",
+        "height": "500px",
+        "frameborder": "0"
+    },
+    "positions": [
+        {
+            "content": "<div>카카오</div>",
+            "latlng": [33.450705, 126.570677],
+            "src": "https://www.kakaocorp.com/"
+        },
+        {
+            "content": "<div>네이버</div>",
+            "latlng": [37.5665, 126.978],
+            "src": "https://www.k-animal.org/"
+        }
+    ]
+}
