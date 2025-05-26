@@ -1,7 +1,7 @@
 # PNU Intro to IW (059) - Team 18
 
 ## Team Members
-- 김주연 ()
+- 김주연 (202555397, Dept. of AI)
 - 변예준 (202555415, Dept. of AI)
 - 이치오 (202555439, Dept. of AI)
 
