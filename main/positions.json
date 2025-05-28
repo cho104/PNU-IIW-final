@@ -1,26 +1,29 @@
 {
     "commonSettings": {
-        "width": "1000px",
-        "height": "600px",
-        "transform": "scale(0.8)",
-        "transformOrigin": "0 0",
-        "frameborder": "0"
+        "width": "80%", 
+        "height": "auto",
+        "scale": "0.8",
+        "border": "1px solid #ccc",
+        "padding": "10px",
+        "background": "#fff",
+        "borderRadius": "5px",
+        "boxShadow": "0 4px 6px rgba(0,0,0,0.1)"
     },
     "positions": [
         {
             "content": "<div>카카오</div>",
             "latlng": [33.450705, 126.570677],
-            "src": "https://www.zooseyo.or.kr/zooseyo_or_kr.html?"
+            "shelno": "311322200900001"
         },
         {
             "content": "<div>네이버</div>",
             "latlng": [37.5665, 126.978],
-            "src": "https://www.k-animal.org/"
+            "shelno": "311322200900001"
         },
         {
             "content": "<div>부산대</div>",
             "latlng": [35.1796, 129.0756],
-            "src": "https://www.pusan.ac.kr/"
+            "shelno": "311322200900001"
         }
     ]
 }
