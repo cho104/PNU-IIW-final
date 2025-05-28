@@ -7,6 +7,19 @@ body { font-family: Arial, sans-serif; margin: 20px; display: flex; flex-directi
 iframe { width: 100%; height: 300px; border: none; display: block; margin: 0 auto; }
 #search input { width: 80%; padding: 10px; }
 #mapContainer { position: relative; width: 100%; height: 100%; margin-top: 80px;}
-#search { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); background: rgba(255, 255, 255, 0.8); padding: 10px; border-radius: 8px; }
-.iframe-container { position: relative; width: 80vw; height: auto; overflow: hidden; }
-.iframe-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+#search { position: absolute; top: 10px; left: 50%; transform: translateX(-50%); background: rgba(255, 255, 255, 0.8); padding: 10px; border-radius: 8px; z-index: 10; }
+.animal-info-display { width: 592px; max-width: 95vw; height: 480px; overflow-y: auto; display: flex; flex-direction: row; flex-wrap: wrap; gap: 8px; justify-content: center; align-items: flex-start; margin-top: 15px;}
+.animal-card { width: calc(25% - 6px); max-width: 140px; min-width: 120px; overflow: hidden; text-align: center; box-sizing: border-box; margin: 0; cursor: pointer; transition: border 0.2s ease-in-out; border: 1px solid transparent; }
+.animal-card:hover { border: 1px solid #007bff; }
+.animal-card img { width: 100%; height: 80px; object-fit: cover; margin-bottom: 5px; }
+.animal-card p { margin: 0; line-height: 1.2; font-size: 0.8em; }
+.animal-card p strong { font-size: 0.9em; }
+.animal-detail-content { text-align: left; padding: 0 10px; }
+.animal-detail-content img { max-width: 80%; height: auto; border-radius: 8px; margin: 15px auto; display: block; }
+.animal-detail-content h3 { text-align: center; font-size: 1.5em; margin-bottom: 15px; color: #333; }
+.animal-detail-content p { margin-bottom: 8px; font-size: 0.9em; color: #555; }
+.animal-detail-content strong { color: #333; display: inline-block; width: 90px; }
+.animal-detail-content a { color: #007bff; text-decoration: none; }
+.animal-detail-content a:hover { text-decoration: underline; }
+.back-to-list-button { background-color: #007bff; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; margin-bottom: 15px; font-size: 0.9em; display: block; margin-left: auto; margin-right: auto; text-align: center; transition: background-color 0.2s ease; }
+.back-to-list-button:hover { background-color: #0056b3; }
