@@ -245,3 +245,31 @@ function searchPage() {
     var url = "search.html?query=" + encodeURIComponent(search);
     window.open(url, "_blank");
 }
+
+
+
+
+
+
+
+/*
+---------------------------------------------------------------
+FFFFF RRRRR  OOOOO  N   N  TTTTT    EEEEE  N   N  DDDD    
+F     R   R  O   O  NN  N    T      E      NN  N  D   D   
+FFF   RRRR   O   O  N N N    T      EEEE   N N N  D   D   
+F     R  R   O   O  N  NN    T      E      N  NN  D   D   
+F     R   R  OOOOO  N   N    T      EEEEE  N   N  DDDD    
+---------------------------------------------------------------
+          RRRRR  EEEEE  AAAAA  L   L   YYYYY   
+          R   R  E      A   A  L   L     Y    
+          RRRR   EEEE   AAAAA  L   L     Y    
+          R  R   E      A   A  L   L     Y    
+          R   R  EEEEE  A   A  LLL LLL   Y    
+---------------------------------------------------------------
+       SSSSS  H   H  IIIII  TTTTT   
+       S      H   H    I      T     
+       SSSS   HHHHH    I      T     
+           S  H   H    I      T     
+       SSSSS  H   H  IIIII    T     
+---------------------------------------------------------------
+*/
