@@ -38,11 +38,6 @@ function initializeMapAndMarkers() {
                 message = "<div style='padding:5px;'>현위치</div>";
 
             displayMarker(map, locPosition, message);
-        }, function(error) {
-            console.error("Geolocation 오류:", error);
-            var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
-                message = "현위치를 가져올 수 없어요..";
-            displayMarker(map, locPosition, message);
         });
     } else {
         var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
