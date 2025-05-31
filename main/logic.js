@@ -1,39 +1,97 @@
 import config from "./apikeys.js";
 
 const kakaoApiKey = config.kakaoMapKey;
+const animaldataServiceKey = config.animaldataServiceKey;
+
 const script = document.createElement("script");
-script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoApiKey}`;
+script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoApiKey}&autoload=false`;
 document.head.appendChild(script);
 
-// Kakao 맵 초기화
-var container = document.getElementById("map");
-var options = {
-    center: new kakao.maps.LatLng(33.450701, 126.570667),
-    level: 2
+script.onload = () => {
+    if (window.kakao && window.kakao.maps) {
+        window.kakao.maps.load(() => {
+            setTimeout(() => {
+                initializeMapAndMarkers();
+            }, 100);
+        });
+    } else {
+        console.error("Kakao Maps SDK가 로드되지 않았거나 kakao.maps 객체가 준비되지 않았습니다.");
+    }
 };
-var map = new kakao.maps.Map(container, options);
 
-// HTML5의 geolocation으로 현위치 표시
-if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(function(position) {
-        var lat = position.coords.latitude,
-            lon = position.coords.longitude;
+function initializeMapAndMarkers() {
+    // Kakao 맵 초기화
+    var container = document.getElementById("map");
+    var options = {
+        center: new kakao.maps.LatLng(33.450701, 126.570667),
+        level: 2
+    };
+    var map = new kakao.maps.Map(container, options);
 
-        var locPosition = new kakao.maps.LatLng(lat, lon),
-            message = "<div style='padding:5px;'>현위치</div>";
+    // HTML5의 geolocation으로 현위치 표시
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            var lat = position.coords.latitude,
+                lon = position.coords.longitude;
 
-        displayMarker(locPosition, message);
-    });
-} else {
-    var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
-        message = "geolocation을 사용할 수 없어요..";
+            var locPosition = new kakao.maps.LatLng(lat, lon),
+                message = "<div style='padding:5px;'>현위치</div>";
 
-    displayMarker(locPosition, message);
+            displayMarker(map, locPosition, message);
+        }, function(error) {
+            console.error("Geolocation 오류:", error);
+            var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
+                message = "현위치를 가져올 수 없어요..";
+            displayMarker(map, locPosition, message);
+        });
+    } else {
+        var locPosition = new kakao.maps.LatLng(33.450701, 126.570667),
+            message = "geolocation을 사용할 수 없어요..";
+
+        displayMarker(map, locPosition, message);
+    }
+
+    fetch("positions.json")
+        .then(response => response.json())
+        .then(data => {
+            var commonSettings = data.commonSettings; // 사용되지 않는 변수
+            var positions = data.positions;
+
+            positions.forEach(position => {
+                var marker = new kakao.maps.Marker({
+                    map: map,
+                    clickable: true,
+                    position: new kakao.maps.LatLng(position.latlng[0], position.latlng[1])
+                });
+
+                var infowindow = new kakao.maps.InfoWindow({
+                    content: position.content
+                });
+
+                var divHTML = `
+                <div class="animal-info-display" id="animal-container-${position.shelno}">
+                    <p style="text-align: center; width: 100%; padding: 20px;">정보를 불러오는 중...</p>
+                </div>
+                `;
+
+                var clickinfo = new kakao.maps.InfoWindow({
+                    content: divHTML,
+                });
+
+                kakao.maps.event.addListener(marker, "mouseover", makeOverListener(map, marker, infowindow));
+                kakao.maps.event.addListener(marker, "mouseout", makeOutListener(infowindow));
+                kakao.maps.event.addListener(marker, "click", makeClickListener(map, marker, infowindow, clickinfo, position.shelno));
+                kakao.maps.event.addListener(map, "click", function(mouseEvent) {
+                    clickinfo.close();
+                });
+            });
+        })
+        .catch(error => console.error("JSON 데이터를 불러오는 중 오류 발생:", error));
 }
 
-function displayMarker(locPosition, message) {
+function displayMarker(mapInstance, locPosition, message) {
     var marker = new kakao.maps.Marker({
-        map: map,
+        map: mapInstance,
         position: locPosition
     });
 
@@ -42,62 +100,9 @@ function displayMarker(locPosition, message) {
         removable: true
     });
 
-    infowindow.open(map, marker);
-    map.setCenter(locPosition);
+    infowindow.open(mapInstance, marker);
+    mapInstance.setCenter(locPosition);
 }
-
-function adjustIframeScale(iframe) {
-    const container = iframe.parentElement;
-    const scale = container.clientWidth / iframe.clientWidth;
-    iframe.style.transform = `scale(${scale})`;
-    iframe.style.transformOrigin = "0 0";
-}
-
-let currentShelterAnimals = {};
-
-fetch("positions.json")
-    .then(response => response.json())
-    .then(data => {
-        var commonSettings = data.commonSettings;
-        var positions = data.positions;
-
-        positions.forEach(position => {
-            var marker = new kakao.maps.Marker({
-                map: map,
-                clickable: true,
-                position: new kakao.maps.LatLng(position.latlng[0], position.latlng[1])
-            });
-
-            var infowindow = new kakao.maps.InfoWindow({
-                content: position.content
-            });
-
-            var divHTML = `
-            <div class="animal-info-display" id="animal-container-${position.shelno}">
-                <p style="text-align: center; width: 100%; padding: 20px;">정보를 불러오는 중...</p>
-            </div>
-            `;
-
-            var clickinfo = new kakao.maps.InfoWindow({
-                content: divHTML,
-            });
-
-            kakao.maps.event.addListener(marker, "mouseover", makeOverListener(map, marker, infowindow));
-            kakao.maps.event.addListener(marker, "mouseout", makeOutListener(infowindow));
-            kakao.maps.event.addListener(marker, "click", makeClickListener(map, marker, infowindow, clickinfo, position.shelno));
-            kakao.maps.event.addListener(map, "click", function(mouseEvent) {
-                clickinfo.close();
-            });
-        });
-    })
-    .catch(error => console.error("JSON 데이터를 불러오는 중 오류 발생:", error));
-
-window.addEventListener("resize", function() {
-    const iframe = document.querySelector(".responsive-iframe");
-    if (iframe) {
-        adjustIframeScale(iframe);
-    }
-});
 
 function makeOutListener(infowindow) {
     return function() {
@@ -105,16 +110,16 @@ function makeOutListener(infowindow) {
     };
 }
 
-function makeOverListener(map, marker, infowindow) {
+function makeOverListener(mapInstance, marker, infowindow) {
     return function() {
-        infowindow.open(map, marker);
+        infowindow.open(mapInstance, marker);
     };
 }
 
-function makeClickListener(map, marker, infowindow, clickinfo, shelno) {
+function makeClickListener(mapInstance, marker, infowindow, clickinfo, shelno) {
     return function() {
         infowindow.close();
-        clickinfo.open(map, marker);
+        clickinfo.open(mapInstance, marker);
 
         if (currentShelterAnimals[shelno]) {
             showAnimalListInCardContainer(currentShelterAnimals[shelno], shelno);
@@ -123,6 +128,8 @@ function makeClickListener(map, marker, infowindow, clickinfo, shelno) {
         }
     };
 }
+
+let currentShelterAnimals = {};
 
 // 유기동물 정보
 async function fetchAnimalData(careRegNo) {
@@ -252,31 +259,3 @@ function searchPage() {
     var url = "search.html?query=" + encodeURIComponent(search);
     window.open(url, "_blank");
 }
-
-
-
-
-
-
-
-/*
----------------------------------------------------------------
-FFFFF RRRRR  OOOOO  N   N  TTTTT    EEEEE  N   N  DDDD    
-F     R   R  O   O  NN  N    T      E      NN  N  D   D   
-FFF   RRRR   O   O  N N N    T      EEEE   N N N  D   D   
-F     R  R   O   O  N  NN    T      E      N  NN  D   D   
-F     R   R  OOOOO  N   N    T      EEEEE  N   N  DDDD    
----------------------------------------------------------------
-          RRRRR  EEEEE  AAAAA  L   L   YYYYY   
-          R   R  E      A   A  L   L     Y    
-          RRRR   EEEE   AAAAA  L   L     Y    
-          R  R   E      A   A  L   L     Y    
-          R   R  EEEEE  A   A  LLL LLL   Y    
----------------------------------------------------------------
-       SSSSS  H   H  IIIII  TTTTT   
-       S      H   H    I      T     
-       SSSS   HHHHH    I      T     
-           S  H   H    I      T     
-       SSSSS  H   H  IIIII    T     
----------------------------------------------------------------
-*/
