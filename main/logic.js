@@ -1,3 +1,10 @@
+import config from "./apikeys.js";
+
+const kakaoApiKey = config.kakaoMapKey;
+const script = document.createElement("script");
+script.src = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoApiKey}`;
+document.head.appendChild(script);
+
 // Kakao 맵 초기화
 var container = document.getElementById("map");
 var options = {
@@ -120,7 +127,7 @@ function makeClickListener(map, marker, infowindow, clickinfo, shelno) {
 // 유기동물 정보
 async function fetchAnimalData(careRegNo) {
     const url = "https://apis.data.go.kr/1543061/abandonmentPublicService_v2/abandonmentPublic_v2";
-    const serviceKey = "apidecodingkey";
+    const serviceKey = config.animaldataServiceKey;
 
     const params = new URLSearchParams({
         serviceKey: serviceKey,
