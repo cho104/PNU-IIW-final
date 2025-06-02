@@ -216,7 +216,7 @@ function showAnimalDetailInCardContainer(animalData, careRegNo) {
     const detailHTML = `
         <button class="back-to-list-button" data-care-reg-no="${careRegNo}">&lt; 목록으로 돌아가기</button>
         <div class="animal-detail-content">
-            <img src="${animalData.popfile1}" alt="유기동물 사진">
+            <img src="${animalData.popfile1}" alt="이미지를 불러올 수 없습니다.">
             <h3>${animalData.kindNm} (${animalData.sexCd === "F" ? "♀" : "♂"})</h3>
             <p><strong>나이:</strong> ${animalData.age}</p>
             <p><strong>몸무게:</strong> ${animalData.weight}</p>
