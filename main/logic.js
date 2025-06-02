@@ -49,7 +49,7 @@ function initializeMapAndMarkers() {
     fetch("positions.json")
         .then(response => response.json())
         .then(data => {
-            var commonSettings = data.commonSettings; // 사용되지 않는 변수
+            var commonSettings = data.commonSettings;
             var positions = data.positions;
 
             positions.forEach(position => {
@@ -134,7 +134,7 @@ async function fetchAnimalData(careRegNo) {
     const params = new URLSearchParams({
         serviceKey: serviceKey,
         care_reg_no: careRegNo,
-        numOfRows: 12, // 4x3 = 12개
+        numOfRows: 12,
         pageNo: 1,
         _type: "json"
     });
@@ -212,7 +212,6 @@ function showAnimalDetailInCardContainer(animalData, careRegNo) {
     container.style.padding = '15px';
     container.style.overflowY = 'auto';
 
-    // 상세 정보 HTML 구성
     const detailHTML = `
         <button class="back-to-list-button" data-care-reg-no="${careRegNo}">&lt; 목록으로 돌아가기</button>
         <div class="animal-detail-content">
@@ -249,13 +248,87 @@ function showAnimalDetailInCardContainer(animalData, careRegNo) {
     }
 }
 
+// 검색 기능
 window.searchPage = function () {
     var search = document.getElementById("searchInput").value;
-    var url = "search.html?query=" + encodeURIComponent(search);
+    var region = document.getElementById("region")?.value || "";
+    var breed = document.getElementById("breed")?.value || "";
+    var gender = document.getElementById("gender")?.value || "";
+
+    var url = `search.html?query=${encodeURIComponent(search)}`;
+    if (region && region !== "지역 선택") url += `&region=${encodeURIComponent(region)}`;
+    if (breed && breed !== "품종 선택") url += `&breed=${encodeURIComponent(breed)}`;
+    if (gender && gender !== "성별 선택") url += `&gender=${encodeURIComponent(gender)}`;
+
     window.open(url, "_blank");
-}
+};
+
+const searchInput = document.getElementById("searchInput");
+const searchSection = document.getElementById("search");
+const filterOptions = document.getElementById("filterOptions");
+const searchButton = searchSection.querySelector("button");
+
 document.getElementById("searchInput").addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
         searchPage();
     }
 });
+
+document.getElementById("searchInput").addEventListener("focus", function() {
+    createFilterOptions();
+    if (filterOptions) {
+        filterOptions.style.display = "flex";
+        searchSection.classList.add('expanded');
+        searchSection.style.height = 'auto';
+        if (searchButton) { // 필터 확장 시 검색 버튼 숨김
+            searchButton.style.display = "none";
+        }
+    }
+});
+
+document.getElementById("search").addEventListener("focusout", function(event) {
+    if (searchSection.contains(event.relatedTarget)) {
+        return;
+    }
+
+    setTimeout(() => {
+        if (filterOptions) {
+            filterOptions.style.display = "none";
+            searchSection.classList.remove('expanded');
+            searchSection.style.height = '40px';
+            if (searchButton) { // 필터 축소 시 검색 버튼 다시 보이게 함
+                searchButton.style.display = "inline-block";
+            }
+        }
+    }, 200);
+});
+
+// 필터 옵션 동적 생성
+function createFilterOptions() {
+    if (!filterOptions) {
+        console.error("ID가 'filterOptions'인 요소를 찾을 수 없습니다.");
+        return;
+    }
+    if (filterOptions.children.length > 0) {
+        return;
+    }
+
+    filterOptions.appendChild(createSelect("region", ["지역 선택", "서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주"]));
+    filterOptions.appendChild(createSelect("breed", ["품종 선택", "말티즈", "푸들", "시츄", "치와와", "골든 리트리버", "진돗개", "믹스견", "코리안 숏헤어", "페르시안", "샴", "러시안 블루", "뱅갈", "스코티쉬 폴드", "아비시니안", "노르웨이 숲", "스핑크스", "메인쿤", "아메리칸 숏헤어"]));
+    filterOptions.appendChild(createSelect("gender", ["성별 선택", "F", "M", "Q"]));
+}
+
+// 드롭다운 필터 생성 함수
+function createSelect(id, options) {
+    const select = document.createElement("select");
+    select.id = id;
+    select.classList.add("filter-select");
+
+    options.forEach(optionText => {
+        const option = document.createElement("option");
+        option.value = (optionText === "지역 선택" || optionText === "품종 선택" || optionText === "성별 선택") ? "" : optionText;
+        option.textContent = optionText;
+        select.appendChild(option);
+    });
+    return select;
+}
