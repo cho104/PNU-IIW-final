@@ -24,8 +24,7 @@
       <option value="6410000">경기도</option>
       <option value="6280000">부산광역시</option>
       <option value="6270000">대구광역시</option>
-      <!--시도 코드 추가가-->>
-    </select>
+      </select>
 
     <label for="kind">품종:</label>
     <input type="text" id="kind" name="kind" placeholder="믹스">
@@ -45,15 +44,17 @@
   <div id="animalList">검색 결과가 여기에 표시됩니다.</div>
   <button id="loadMoreBtn" style="display: none;">더 보기</button>
 
-  <script>
+  <script type="module"> 
+    import config from './apikeys.js';
+
     $(document).ready(function () {
-      const apiKey = encodeURIComponent('인증키_입력'); 
+      const animaldataServiceKey = config.animaldataServiceKey;
       let currentPage = 1;
       let lastSearchParams = {};
 
       function fetchAnimals(page = 1, append = false) {
         const params = {
-          serviceKey: apiKey,
+          serviceKey: animaldataServiceKey,
           numOfRows: 10,
           pageNo: page,
           _type: 'json',
@@ -63,7 +64,7 @@
         };
 
         $.ajax({
-          url: 'https://cors-anywhere.herokuapp.com/https://apis.data.go.kr/1543061/abandonmentPublicSrvc/abandonmentPublic',
+          url: 'https://apis.data.go.kr/1543061/abandonmentPublicService_v2/abandonmentPublic_v2',
           type: 'GET',
           data: params,
           success: function (response) {
@@ -86,10 +87,10 @@
             (Array.isArray(items) ? items : [items]).forEach(function (item) {
               html += `
                 <div class="animal-item">
-                  <img src="${item.popfile}" alt="동물 사진"><br>
+                  <img src="${item.popfile1}" alt="동물 사진"><br>
                   <strong>나이:</strong> ${item.age} <br>
                   <strong>색상:</strong> ${item.colorCd} <br>
-                  <strong>품종:</strong> ${item.kindCd} <br>
+                  <strong>품종:</strong> ${item.kindNm} <br>
                   <strong>성별:</strong> ${item.sexCd === 'M' ? '수컷' : '암컷'} <br>
                   <strong>발견장소:</strong> ${item.happenPlace}
                 </div>

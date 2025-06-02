@@ -249,8 +249,13 @@ function showAnimalDetailInCardContainer(animalData, careRegNo) {
     }
 }
 
-function searchPage() {
+window.searchPage = function () {
     var search = document.getElementById("searchInput").value;
     var url = "search.html?query=" + encodeURIComponent(search);
     window.open(url, "_blank");
 }
+document.getElementById("searchInput").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        searchPage();
+    }
+});
