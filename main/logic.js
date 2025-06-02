@@ -319,16 +319,38 @@ function createFilterOptions() {
 }
 
 // 드롭다운 필터 생성 함수
-function createSelect(id, options) {
+function createSelect(id, optionsData) {
     const select = document.createElement("select");
     select.id = id;
     select.classList.add("filter-select");
+    select.name = id;
 
-    options.forEach(optionText => {
+    optionsData.forEach(optionPair => {
+        const optionText = optionPair[0];
+        const optionValue = optionPair[1];
+
         const option = document.createElement("option");
-        option.value = (optionText === "지역 선택" || optionText === "품종 선택" || optionText === "성별 선택") ? "" : optionText;
+        option.value = optionValue;
         option.textContent = optionText;
         select.appendChild(option);
     });
     return select;
 }
+
+filterOptions.appendChild(createSelect("region", [
+    ["전체", ""],
+    ["서울특별시", "6110000"],
+    ["경기도", "6410000"],
+    ["부산광역시", "6280000"],
+    ["대구광역시", "6270000"],
+]));
+filterOptions.appendChild(createSelect("breed", [
+    ["품종 선택", ""],
+    ["말티즈", "말티즈"],
+    ["푸들", "푸들"],
+]));
+filterOptions.appendChild(createSelect("gender", [
+    ["성별 선택", ""],
+    ["암컷", "F"],
+    ["수컷", "M"]
+]));
