@@ -280,9 +280,6 @@ document.getElementById("searchInput").addEventListener("focus", function() {
         filterOptions.style.display = "flex";
         searchSection.classList.add('expanded');
         searchSection.style.height = 'auto';
-        if (searchButton) { // 필터 확장 시 검색 버튼 숨김
-            searchButton.style.display = "none";
-        }
     }
 });
 
@@ -296,15 +293,18 @@ document.getElementById("search").addEventListener("focusout", function(event) {
             filterOptions.style.display = "none";
             searchSection.classList.remove('expanded');
             searchSection.style.height = '40px';
-            if (searchButton) { // 필터 축소 시 검색 버튼 다시 보이게 함
-                searchButton.style.display = "inline-block";
-            }
         }
-    }, 200);
+    }, 100);
 });
 
-// 필터 옵션 동적 생성
-function createFilterOptions() {
+if (mapContainer) {
+    mapContainer.addEventListener('click', () => {
+        searchInput.blur();
+    });
+}
+
+// 필터 옵션
+async function createFilterOptions() {
     if (!filterOptions) {
         console.error("ID가 'filterOptions'인 요소를 찾을 수 없습니다.");
         return;
@@ -313,9 +313,16 @@ function createFilterOptions() {
         return;
     }
 
-    filterOptions.appendChild(createSelect("region", ["지역 선택", "서울", "부산", "대구", "인천", "광주", "대전", "울산", "세종", "경기", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주"]));
-    filterOptions.appendChild(createSelect("breed", ["품종 선택", "말티즈", "푸들", "시츄", "치와와", "골든 리트리버", "진돗개", "믹스견", "코리안 숏헤어", "페르시안", "샴", "러시안 블루", "뱅갈", "스코티쉬 폴드", "아비시니안", "노르웨이 숲", "스핑크스", "메인쿤", "아메리칸 숏헤어"]));
-    filterOptions.appendChild(createSelect("gender", ["성별 선택", "F", "M", "Q"]));
+    try {
+        const response = await fetch('options.json');
+        const filterData = await response.json();
+
+        for (const key in filterData) {
+            filterOptions.appendChild(createSelect(key, filterData[key]));
+        }
+    } catch (error) {
+        console.error("JSON 데이터를 불러오는 데 실패했습니다:", error);
+    }
 }
 
 // 드롭다운 필터 생성 함수
@@ -327,7 +334,7 @@ function createSelect(id, optionsData) {
 
     optionsData.forEach(optionPair => {
         const optionText = optionPair[0];
-        const optionValue = optionPair[1];
+        const optionValue = optionPair[1] === undefined ? optionText : optionPair[1];
 
         const option = document.createElement("option");
         option.value = optionValue;
@@ -336,21 +343,3 @@ function createSelect(id, optionsData) {
     });
     return select;
 }
-
-filterOptions.appendChild(createSelect("region", [
-    ["전체", ""],
-    ["서울특별시", "6110000"],
-    ["경기도", "6410000"],
-    ["부산광역시", "6280000"],
-    ["대구광역시", "6270000"],
-]));
-filterOptions.appendChild(createSelect("breed", [
-    ["품종 선택", ""],
-    ["말티즈", "말티즈"],
-    ["푸들", "푸들"],
-]));
-filterOptions.appendChild(createSelect("gender", [
-    ["성별 선택", ""],
-    ["암컷", "F"],
-    ["수컷", "M"]
-]));
