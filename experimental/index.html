@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rescued Animal Search</title>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="app-container">
+            <header class="top-bar">
+                <a href="/" class="website-title">Rescued Animal Search</a>
+                <nav class="main-navigation">
+                    <a href="#" class="nav-item active" data-tab="locator" data-text="Locator">Locator</a>
+                    <a href="#" class="nav-item" data-tab="statistics" data-text="Statistics">Statistics</a>
+                    <a href="#" class="nav-item" data-tab="about" data-text="About Us">About Us</a>
+                </nav>
+            </header>
+            <div class="page-body">
+                <aside class="left-sidebar" id="leftSidebar">
+                    <button class="sidebar-toggle" id="sidebarToggle">
+                        <span class="material-icons-outlined icon">menu</span>
+                    </button>
+                    <nav class="sidebar-nav">
+                        <div class="sidebar-section active-section" data-nav-section="locator">
+                            <a href="#" class="sidebar-item" id="mapListViewToggle" data-action="toggle-view">
+                                <span class="material-icons-outlined icon">map</span>
+                                <span class="text">Map View</span>
+                            </a>
+                            <a href="#" class="sidebar-item search-trigger" data-search-type="keyword">
+                                <span class="material-icons-outlined icon">search</span>
+                                <span class="text">Keyword Search</span>
+                            </a>
+                            <a href="#" class="sidebar-item search-trigger" data-search-type="advanced">
+                                <span class="material-icons-outlined icon">tune</span>
+                                <span class="text">Advanced Search</span>
+                            </a>
+                            <a href="#" class="sidebar-item search-trigger" id="polygonSearchItem" data-search-type="polygon">
+                                <span class="material-icons-outlined icon">polyline</span>
+                                <span class="text">Polygon Search</span>
+                            </a>
+                        </div>
+                        <div class="sidebar-section" data-nav-section="statistics">
+                            <a href="#" class="sidebar-item" data-action="view-stats-overview">
+                                <span class="material-icons-outlined icon">bar_chart</span>
+                                <span class="text">Stats Overview</span>
+                            </a>
+                            <a href="#" class="sidebar-item" data-action="take-quiz">
+                                <span class="material-icons-outlined icon">quiz</span>
+                                <span class="text">Pet Quiz</span>
+                            </a>
+                        </div>
+                        <div class="sidebar-section" data-nav-section="about">
+                            <a href="#" class="sidebar-item" data-action="project-intro">
+                                <span class="material-icons-outlined icon">info</span>
+                                <span class="text">Project Intro</span>
+                            </a>
+                            <a href="#" class="sidebar-item" data-action="team-intro">
+                                <span class="material-icons-outlined icon">groups</span>
+                                <span class="text">Team Intro</span>
+                            </a>
+                        </div>
+                    </nav>
+                </aside>
+                <main class="main-content" id="mainContent">
+                    <div class="content-section" id="welcomeMessage">
+                        <h2>Welcome to PetPals Connect!</h2>
+                        <p>Select an option from the top or side navigation to get started.</p>
+                    </div>
+                    <div class="content-section hidden" id="locatorContent">
+                        <div class="display-area active-display" id="mapDisplayArea">
+                            <div id="map" style="width:100%;height:calc(100vh - 120px);"></div>
+                        </div>
+                        <div class="display-area" id="listDisplayArea" style="height:calc(100vh - 120px); overflow-y: auto;">
+                            <p style="text-align:center; padding:20px;">Loading animal list...</p>
+                        </div>
+                    </div>
+                    <div class="content-section hidden" id="statisticsContent">
+                        <h2>Statistics</h2>
+                        <div id="statsOverviewContent" class="sub-content">
+                            <p>Overall pet statistics and charts will be displayed here.</p>
+                            <div style="height: 200px; border: 1px dashed #ccc; margin-bottom:10px;">[Chart 1]</div>
+                            <div style="height: 200px; border: 1px dashed #ccc;">[Chart 2]</div>
+                        </div>
+                        <div id="petQuizContent" class="sub-content hidden">
+                            <h3>Interactive Pet Quiz</h3>
+                            <div class="quiz-container">
+                                <div id="question-header" class="quiz-question-header"> Question <span id="question-number-display">1</span> of <span id="total-questions-display">4</span>
+                                </div>
+                                <p id="question-text-display" class="quiz-question-text">Question text will load here.</p>
+                                <div id="options-display" class="quiz-options-container"></div>
+                                <p id="result-display" class="quiz-result"></p>
+                                <button id="next-question-btn" class="quiz-action-button">Next Question</button>
+                            </div>
+                            <div id="quiz-final-score" class="quiz-final-score-container" style="display: none;">
+                                <h2>Quiz Complete!</h2>
+                                <p>Your score: <span id="user-score">0</span>/ <span id="total-score">0</span>
+                                </p>
+                                <button id="restart-quiz-btn" class="quiz-action-button">Restart Quiz</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-section hidden" id="aboutContent">
+                        <h2>About Us</h2>
+                        <div id="projectIntroContent" class="sub-content">
+                            <h3>Project Introduction</h3>
+                            <p>This project aims to connect pets with loving homes...</p>
+                        </div>
+                        <div id="teamIntroContent" class="sub-content hidden">
+                            <h3>Team Introduction</h3>
+                            <p>Meet the dedicated team...</p>
+                        </div>
+                    </div>
+                </main>
+                <aside class="right-sidebar" id="rightSidebar">
+                    <button class="close-right-sidebar" id="closeRightSidebar">
+                        <span class="material-icons-outlined icon">close</span>
+                    </button>
+                    <div class="right-sidebar-content" id="rightSidebarContent">
+                        <p>Search options will appear here.</p>
+                    </div>
+                </aside>
+            </div>
+        </div>
+        <script type="module" src="script.js"></script>
+    </body>
+</html>
