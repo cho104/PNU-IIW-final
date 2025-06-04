@@ -274,14 +274,23 @@ document.getElementById("searchInput").addEventListener("keydown", function(even
     }
 });
 
-document.getElementById("searchInput").addEventListener("focus", function() {
+document.getElementById("optionButton").addEventListener("click", function() {
     createFilterOptions();
     if (filterOptions) {
-        filterOptions.style.display = "flex";
-        searchSection.classList.add('expanded');
-        searchSection.style.height = 'auto';
-        if (searchButton) {
-            searchButton.style.display = "block";
+        if (filterOptions.style.display === "flex") {
+            filterOptions.style.display = "none";
+            searchSection.classList.remove('expanded');
+            searchSection.style.height = 'auto';
+            if (searchButton) {
+                searchButton.style.display = "none";
+            }
+        } else {
+            filterOptions.style.display = "flex";
+            searchSection.classList.add('expanded');
+            searchSection.style.height = 'auto';
+            if (searchButton) {
+                searchButton.style.display = "block";
+            }
         }
     }
 });

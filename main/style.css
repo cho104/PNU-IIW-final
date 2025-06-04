@@ -1,6 +1,8 @@
 html,body{height:100%;margin:0;padding:0;overflow:hidden;}
 body{font-family:Arial,sans-serif;display:flex;flex-direction:column;}
 #search{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:80%;max-width:800px;min-height:40px;overflow:hidden;transition:height 0.3s ease-out,border-radius 0.3s ease-out;border:1px solid #ccc;border-radius:8px;background-color:white;z-index:1000;display:flex;flex-direction:column;align-items:center;padding:0;box-sizing:border-box;}
+#searchbar{width:100%;height:40px;display:flex;justify-content:space-between;padding:0 12px;box-sizing:border-box;background-color:white;border-bottom:1px solid #eee;cursor:pointer;transition:background-color 0.2s ease;}
+#optionButton{display:flex;font-size:1rem;color:#333;background-color:transparent;transition:color 0.2s ease;border:none;margin-right:5px}
 #search.expanded{height:auto;border-bottom-left-radius:8px;border-bottom-right-radius:8px;}
 .search-input-area{display:flex;width:100%;align-items:center;padding:0 12px;box-sizing:border-box;height:40px;gap:10px;}
 #searchInput{width:90%;flex-grow:1;padding:8px 0;border:none;outline:none;background-color:transparent;box-sizing:border-box;font-size:1rem;flex-shrink:0;}
