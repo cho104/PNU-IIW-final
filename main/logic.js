@@ -260,13 +260,13 @@ window.searchPage = function () {
     if (breed && breed !== "품종 선택") url += `&breed=${encodeURIComponent(breed)}`;
     if (gender && gender !== "성별 선택") url += `&gender=${encodeURIComponent(gender)}`;
 
-    window.open(url, "_blank");
+    window.open(url, "_self");
 };
 
 const searchInput = document.getElementById("searchInput");
 const searchSection = document.getElementById("search");
 const filterOptions = document.getElementById("filterOptions");
-const searchButton = searchSection.querySelector("button");
+const searchButton = document.getElementById("searchButton");
 
 document.getElementById("searchInput").addEventListener("keydown", function(event) {
     if (event.key === "Enter") {
@@ -280,6 +280,9 @@ document.getElementById("searchInput").addEventListener("focus", function() {
         filterOptions.style.display = "flex";
         searchSection.classList.add('expanded');
         searchSection.style.height = 'auto';
+        if (searchButton) {
+            searchButton.style.display = "block";
+        }
     }
 });
 
@@ -293,14 +296,22 @@ document.getElementById("search").addEventListener("focusout", function(event) {
             filterOptions.style.display = "none";
             searchSection.classList.remove('expanded');
             searchSection.style.height = '40px';
+            if (searchButton) {
+                searchButton.style.display = "none";
+            }
         }
     }, 100);
 });
 
+const mapContainer = document.getElementById("mapContainer");
 if (mapContainer) {
     mapContainer.addEventListener('click', () => {
         searchInput.blur();
     });
+}
+
+if (searchButton) {
+    searchButton.addEventListener("click", searchPage);
 }
 
 // 필터 옵션
@@ -309,6 +320,7 @@ async function createFilterOptions() {
         console.error("ID가 'filterOptions'인 요소를 찾을 수 없습니다.");
         return;
     }
+    // 필터 옵션이 이미 생성되었다면 다시 만들지 않습니다.
     if (filterOptions.children.length > 0) {
         return;
     }
