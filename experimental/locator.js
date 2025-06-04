@@ -9,7 +9,7 @@ let markersOnMap = {};
 let mapContainerElement = null;
 let listContainerElement = null;
 let isLocatorInitialized = false;
-const KAKAO_SDK_URL = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_API_KEY}&autoload=false&libraries=services,clusterer,drawing`;
+const KAKAO_SDK_URL = `https://dapi.kakao.com/v2/maps/sdk.js?appkey=${KAKAO_API_KEY}&autoload=false`;
 
 function loadKakaoMapsSDK() {
     return new Promise((resolve, reject) => {
