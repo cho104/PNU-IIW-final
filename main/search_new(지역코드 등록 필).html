@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="codeMap.js"></script>
 </head>
 <body>
   <!-- 첫 번째 드롭다운 -->
@@ -11,7 +12,14 @@
     <option value="">-- 선택하세요 --</option>
     <option value="a">서울</option>
     <option value="b">부산</option>
-    <option value="c">C</option>
+    <option value="c">대구</option>
+    <option value="d">인천</option>
+    <option value="e">광주</option>
+    <option value="f">세종</option>
+    <option value="g">대전</option>
+    <option value="h">울산</option>
+    <option value="i">경기</option>
+    <option value="j">강원</option>
   </select>
 
   <!-- 두 번째 드롭다운 (시도 하위 선택지)-->
@@ -46,50 +54,6 @@
    <div id="result"></div>
 
   <script>
-    // 숫자 코드 매핑
-    const codeMap = {
-      a: 6110000,
-      b: 6410000,
-      c: 6280000,
-
-      // 서울시 구 코드
-      '강북구': 3080000,
-      '강남구': 3220000,
-      '강동구': 3240000,
-      '관악구':3200000,
-      '광진구': 3040000,
-      '구로구': 3160000,
-      '금천구': 3170000,
-      '노원구': 3100000,
-      '도봉구': 3090000,
-      '동대문구': 3050000,
-      '동작구': 3190000,
-      '마포구': 3130000,
-      '서대문구':3120000,
-      '서초구': 3210000,
-      '성동구': 3030000,
-      '성북구': 3070000,
-      '송파구': 3230000,
-      '양천구': 3140000,
-      '영등포구': 3180000,
-      '용산구': 3020000,
-      '은평구': 3110000,
-      '종로구': 3000000,
-      '중구': 3010000,
-      '중랑구': 3060000,
-
-      // 부산시 구 코드
-
-      
-      // 성별 코드
-      x: 'M',
-      y: 'F',
-      z: 'Q',
-      'dog': 417000,
-      'cat': 422400, 
-      'etc' : 429900
-    };
-
     const subOptions = {
       a: ['강북구', '강남구', '강동구', '관악구', '광진구', '구로구', '금천구', '노원구', '도봉구', '동대문구', '동작구', '마포구', '서대문구', '서초구', '성동구', '성북구', '송파구', '양천구', '영등포구', '용산구', '은평구', '종로구', '중구', '중랑구'],
       b: [],
@@ -127,7 +91,7 @@
       const forthCode = codeMap[forth] || "";
 
       let url = "https://apis.data.go.kr/1543061/abandonmentPublicService_v2/abandonmentPublic_v2"
-        + "?serviceKey=" +"서비스키"
+        + "?serviceKey=H18CHwE9DvQgtg5Gq0s4gyB%2B7jc7Qb2VHvbDRIQwxlYmxQL4dKuZVPMsOV1YapF8gGUjpodSnwMVD4qYNPslTA%3D%3D"
         + "&upr_cd=" + firstCode
         + "&org_cd=" + secondCode;
 
