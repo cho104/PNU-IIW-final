@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Rescued Animal Search</title>
+        <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="app-container">
+            <header class="top-bar">
+                <a href="/" class="website-title">Rescued Animal Search</a>
+                <nav class="main-navigation">
+                    <a href="#" class="nav-item active" data-tab="locator" data-text="Locator">Locator</a>
+                    <a href="#" class="nav-item" data-tab="statistics" data-text="Statistics">Statistics</a>
+                    <a href="#" class="nav-item" data-tab="about" data-text="About Us">About Us</a>
+                </nav>
+            </header>
+            <div class="page-body">
+                <aside class="left-sidebar" id="leftSidebar">
+                    <button class="sidebar-toggle" id="sidebarToggle">
+                        <span class="material-icons-outlined icon">menu</span>
+                    </button>
+                    <nav class="sidebar-nav">
+                        <div class="sidebar-section active-section" data-nav-section="locator">
+                            <a href="#" class="sidebar-item" id="mapListViewToggle" data-action="toggle-view">
+                                <span class="material-icons-outlined icon">map</span>
+                                <span class="text">Map View</span>
+                            </a>
+                            <a href="#" class="sidebar-item search-trigger" data-search-type="keyword">
+                                <span class="material-icons-outlined icon">search</span>
+                                <span class="text">Keyword Search</span>
+                            </a>
+                            <a href="#" class="sidebar-item search-trigger" data-search-type="advanced">
+                                <span class="material-icons-outlined icon">tune</span>
+                                <span class="text">Advanced Search</span>
+                            </a>
+                        </div>
+                        <div class="sidebar-section" data-nav-section="statistics">
+                            <a href="#" class="sidebar-item" data-action="view-stats-overview">
+                                <span class="material-icons-outlined icon">bar_chart</span>
+                                <span class="text">Stats Overview</span>
+                            </a>
+                            <a href="#" class="sidebar-item" data-action="take-quiz">
+                                <span class="material-icons-outlined icon">quiz</span>
+                                <span class="text">Pet Quiz</span>
+                            </a>
+                        </div>
+                        <div class="sidebar-section" data-nav-section="about">
+                            <a href="#" class="sidebar-item" data-action="project-intro">
+                                <span class="material-icons-outlined icon">info</span>
+                                <span class="text">Project Intro</span>
+                            </a>
+                            <a href="#" class="sidebar-item" data-action="team-intro">
+                                <span class="material-icons-outlined icon">groups</span>
+                                <span class="text">Team Intro</span>
+                            </a>
+                        </div>
+                    </nav>
+                </aside>
+                <main class="main-content" id="mainContent">
+                    <div class="content-section hidden" id="locatorContent">
+                        <div class="display-area active-display" id="mapDisplayArea">
+                            <div id="map" style="width:100%;height:calc(100vh - 120px);"></div>
+                        </div>
+                        <div class="display-area" id="listDisplayArea" style="height:calc(100vh - 120px); overflow-y: auto;">
+                            <p style="text-align:center; padding:20px;">Loading animal list...</p>
+                        </div>
+                    </div>
+                    <div class="content-section hidden" id="statisticsContent">
+                        <h2>Statistics</h2>
+                        <div class="sub-content" id="statsOverviewContent">
+                            <h2 class="stats-main-title">전국 유기동물 현황</h2>
+                            <p class="stats-data-period">데이터 기간: <span id="statsDataPeriod"></span></p>
+                            <div class="charts-container">
+                                <div class="chart-wrapper">
+                                    <h3>유기동물 처리 현황 (전체 지역)</h3>
+                                    <div class="chart-pie-container">
+                                        <canvas id="animalStatusPieChart"></canvas>
+                                        <div id="pieChartTotalCount" class="pie-chart-total"></div>
+                                    </div>
+                                </div>
+                                <div class="chart-wrapper">
+                                    <h3>유기동물 처리 현황 (바 차트)</h3>
+                                    <canvas id="animalStatusBarChart"></canvas>
+                                </div>
+                                <div class="chart-wrapper full-width-chart">
+                                    <h3>지역별 입양률 (%)</h3>
+                                    <canvas id="regionalAdoptionRateChart"></canvas>
+                                </div>
+                            </div>
+                            <p class="stats-last-updated">마지막 업데이트: <span id="statsLastUpdated"></span></p>
+                        </div>
+                        <div id="petQuizContent" class="sub-content hidden">
+                            <h3>Interactive Pet Quiz</h3>
+                            <div class="quiz-container">
+                                <div id="question-header" class="quiz-question-header"> Question <span id="question-number-display">1</span> of <span id="total-questions-display">4</span>
+                                </div>
+                                <p id="question-text-display" class="quiz-question-text">Question text will load here.</p>
+                                <div id="options-display" class="quiz-options-container"></div>
+                                <p id="result-display" class="quiz-result"></p>
+                                <button id="next-question-btn" class="quiz-action-button">Next Question</button>
+                            </div>
+                            <div id="quiz-final-score" class="quiz-final-score-container" style="display: none;">
+                                <h2>Quiz Complete!</h2>
+                                <p>Your score: <span id="user-score">0</span>/ <span id="total-score">0</span>
+                                </p>
+                                <button id="restart-quiz-btn" class="quiz-action-button">Restart Quiz</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="content-section hidden" id="aboutContent">
+                        <h2>About Us</h2>
+                        <div class="sub-content" id="projectIntroContent">
+                            <div class="about-us-page-container project-intro-container">
+                                <p style="text-align:center; padding:20px;">Loading Project Introduction...</p>
+                            </div>
+                        </div>
+                        <div class="sub-content hidden" id="teamIntroContent">
+                            <div class="about-us-page-container team-intro-container">
+                                <p style="text-align:center; padding:20px;">Loading Team Introduction...</p>
+                            </div>
+                        </div>
+                    </div>
+                </main>
+                <aside class="right-sidebar" id="rightSidebar">
+                    <button class="close-right-sidebar" id="closeRightSidebar">
+                        <span class="material-icons-outlined icon">close</span>
+                    </button>
+                    <div class="right-sidebar-content" id="rightSidebarContent">
+                        <h3 id="rightSidebarTitle">Search Options</h3>
+                        <div id="searchFilterFormContainer">
+                        </div>
+                        <div class="right-sidebar-actions">
+                            <button id="applySearchFiltersBtn" class="sidebar-btn">Apply</button>
+                            <button id="resetSearchFiltersBtn" class="sidebar-btn alt-btn">Reset</button>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+        </div>
+        <script type="module" src="script.js"></script>
+    </body>
+</html>

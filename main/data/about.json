@@ -1,0 +1,74 @@
+{
+  "projectTitle": "프로젝트 소개",
+  "projectIntro": [
+    {
+      "type": "video",
+      "videoId": "dQw4w9WgXcQ",
+      "title": "프로젝트 소개 영상"
+    },
+    {
+      "type": "paragraph",
+      "content": "인터넷과 웹 기초 프로젝트의 일환으로 18팀은 유기동물 입양에 관심 있는 분들을 위한 웹사이트를 개발했습니다. 본 프로젝트는 사용자들에게 가까운 유기동물 보호소의 상세 정보와 현재 보호 중인 동물들의 프로필을 제공하여, 유기동물 입양 과정에 대한 접근성을 높이는 것을 목표로 합니다."
+    },
+    {
+      "type": "paragraph",
+      "content": "저희 웹사이트는 단순한 정보 제공을 넘어, 유기동물 현황에 대한 통계 자료를 시각적으로 보여주고, 유기동물 관련 지식을 재미있게 습득할 수 있는 간단한 퀴즈를 제공하여 사용자들의 관심을 유도합니다."
+    }
+  ],
+  "mainFeatures": {
+    "title": "주요 기능 및 특징",
+    "items": [
+      {
+        "feature": "보호소 정보 및 동물 프로필",
+        "description": "유기동물 보호소 위치 및 각 보호소에서 보호 중인 동물의 사진, 나이, 특징 등 상세 프로필을 제공합니다."
+      },
+      {
+        "feature": "유기동물 통계 자료",
+        "description": "유기동물 발생 현황, 입양률 등 통계 데이터를 그래프로 제공하여 유기동물 문제에 대한 인식을 높입니다."
+      },
+      {
+        "feature": "유기동물 지식 퀴즈",
+        "description": "유기동물에 대한 상식 퀴즈를 제공하여 사용자들의 정보 습득을 돕습니다."
+      },
+      {
+        "feature": "반응형 웹 디자인",
+        "description": "다양한 크기의 기기에서 최적화된 웹페이지를 제공합니다."
+      },
+      {
+        "feature": "사용자 입력 처리",
+        "description": "의미가 잘 전달되는 플레이스홀더 텍스트와 에러 핸들링을 통해 안정적인 검색 기능을 제공합니다."
+      },
+      {
+        "feature": "OpenAPI 연동",
+        "description": "공공데이터 포털 및 카카오맵의 OpenAPI를 활용하여 실시간 유기동물 정보를 제공합니다."
+      }
+    ]
+  },
+  "techStack": {
+    "title": "기술 스택",
+    "description": "본 프로젝트는 HTML, CSS, JavaScript를 기반으로 개발되었으며, Node.js, Express를 활용하여 서버를 구현, 코드의 모듈성과 유지보수성에 중점을 두었습니다."
+  },
+  "teamIntro": {
+    "title": "인터넷과 웹 기초 18팀",
+    "members": [
+      {
+        "name": "김주연",
+        "role": "팀장, 기획, 백엔드 개발",
+        "studentID": "202555397",
+        "department": "Dept. of AI, School of CSE"
+      },
+      {
+        "name": "변예준",
+        "role": "팀원, 백엔드 개발, API 연동",
+        "studentID": "202555415",
+        "department": "Dept. of AI, School of CSE"
+      },
+      {
+        "name": "이치오",
+        "role": "팀원, 프론트엔드/백엔드 개발",
+        "studentID": "202555439",
+        "department": "Dept. of AI, School of CSE"
+      }
+    ]
+  }
+}

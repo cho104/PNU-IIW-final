@@ -1,0 +1,107 @@
+{
+  "chart1Data": [
+    {
+      "processName": "보호중",
+      "total": 57909
+    },
+    {
+      "processName": "자연사",
+      "total": 13088
+    },
+    {
+      "processName": "입양",
+      "total": 9253
+    },
+    {
+      "processName": "기증",
+      "total": 1259
+    },
+    {
+      "processName": "반환",
+      "total": 6909
+    },
+    {
+      "processName": "방사",
+      "total": 631
+    },
+    {
+      "processName": "안락사",
+      "total": 6143
+    }
+  ],
+  "chart2Data": [
+    {
+      "regionName": "인천광역시",
+      "percentage": 15.3
+    },
+    {
+      "regionName": "경상북도",
+      "percentage": 13.3
+    },
+    {
+      "regionName": "대구광역시",
+      "percentage": 13
+    },
+    {
+      "regionName": "전북특별자치도",
+      "percentage": 11.5
+    },
+    {
+      "regionName": "서울특별시",
+      "percentage": 11.4
+    },
+    {
+      "regionName": "충청북도",
+      "percentage": 10.4
+    },
+    {
+      "regionName": "대전광역시",
+      "percentage": 10.3
+    },
+    {
+      "regionName": "세종특별자치시",
+      "percentage": 10
+    },
+    {
+      "regionName": "충청남도",
+      "percentage": 9.8
+    },
+    {
+      "regionName": "경상남도",
+      "percentage": 9.4
+    },
+    {
+      "regionName": "광주광역시",
+      "percentage": 9.1
+    },
+    {
+      "regionName": "강원특별자치도",
+      "percentage": 8.6
+    },
+    {
+      "regionName": "경기도",
+      "percentage": 8.5
+    },
+    {
+      "regionName": "부산광역시",
+      "percentage": 8
+    },
+    {
+      "regionName": "울산광역시",
+      "percentage": 6.6
+    },
+    {
+      "regionName": "전라남도",
+      "percentage": 6.3
+    },
+    {
+      "regionName": "제주특별자치도",
+      "percentage": 5.5
+    }
+  ],
+  "lastUpdated": "2025-06-08T07:46:35.773Z",
+  "dataPeriod": {
+    "begin": "20240608",
+    "end": "20250608"
+  }
+}
